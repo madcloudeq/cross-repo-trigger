@@ -19,6 +19,6 @@ jobs:
       - name: Trigger Workflow
         uses: peter-evans/repository-dispatch@v2
         with:
-          token: ${{secrets.ACCESS_TOKEN}}
+          token: ${{secrets.CROSS_REPO}}
           repository: madcloudeq/base-repo
           event-type: trigger-workflow
