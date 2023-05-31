@@ -15,5 +15,5 @@ jobs:
       - uses: trstringer/manual-approval@v1
         with:
           secret: ${{ github.TOKEN }}
-          approvers: madcloudeq,nikita-ceq
+          approvers: madcloudeq
           minimum-approvals: 1
