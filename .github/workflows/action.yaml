@@ -1,11 +1,6 @@
 name: test_action
 
 on:
-  repository_dispatch:
-#  push:
-#    branches:
-#      - main
-#  pull_request:
   workflow_dispatch:
 
 
@@ -16,3 +11,9 @@ jobs:
       - name: hello
         run: echo hello world
 
+      - name: manual-workflow
+      - uses: trstringer/manual-approval@v1
+        with:
+          secret: ${{ github.TOKEN }}
+          approvers: madcloudeq,nikita-ceq
+          minimum-approvals: 1
