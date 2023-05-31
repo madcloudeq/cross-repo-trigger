@@ -22,3 +22,5 @@ jobs:
           exclude-workflow-initiator-as-approver: false
           additional-approved-words: ''
           additional-denied-words: ''
+      - name: hello
+        run: echo approval given
