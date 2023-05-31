@@ -11,7 +11,7 @@ jobs:
       - name: hello
         run: echo hello world
 
-      - name: manual-workflow
+#      - name: manual-workflow
       - uses: trstringer/manual-approval@v1
         with:
           secret: ${{ github.TOKEN }}
