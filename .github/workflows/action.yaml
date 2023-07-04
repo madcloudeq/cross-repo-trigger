@@ -14,4 +14,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: hello
-        run: echo hello world
+        run: gh auth login --with-token https://madcloudeq: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@github.com/madcloudeq/cross-repo-trigger.git && echo hello world 
