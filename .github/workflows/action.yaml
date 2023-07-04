@@ -7,11 +7,12 @@ on:
 #      - main
 #  pull_request:
   workflow_dispatch:
-
+env:
+  pat_token: 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
 
 jobs:
   remote:
     runs-on: ubuntu-latest
     steps:
       - name: hello
-        run: gh auth login --with-token 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 && echo hello world 
+        run: gh auth login --with-token <<< $pat_token && echo hello world 
