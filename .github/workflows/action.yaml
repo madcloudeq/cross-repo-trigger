@@ -16,5 +16,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: hello
-        run: gh secret set MYSECRET  --repo https://github.com/madcloudeq/cross-repo-trigger.git --body "abc"
-        
+        #run: gh secret set MYSECRET  --repo https://github.com/madcloudeq/cross-repo-trigger.git --body "abc"
+        run: gh auth login
