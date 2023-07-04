@@ -17,4 +17,4 @@ jobs:
     steps:
       - name: hello
         #run: gh secret set MYSECRET  --repo https://github.com/madcloudeq/cross-repo-trigger.git --body "abc"
-        run: gh auth login
+        run: gh auth login --hostname github.com --with-token ${{ env.GH_TOKEN }}
