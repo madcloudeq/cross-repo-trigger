@@ -15,4 +15,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: hello
-        run: gh auth login --with-token ${{ env.pat_token }} && echo hello world 
+        run: gh auth login --with-token <<< ${{ env.pat_token }} && echo hello world 
