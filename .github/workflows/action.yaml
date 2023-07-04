@@ -8,12 +8,13 @@ on:
 #  pull_request:
   workflow_dispatch:
 
+env:
+  GH_TOKEN: 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
 
 jobs:
   remote:
     runs-on: ubuntu-latest
     steps:
       - name: hello
-      - run: gh secret set MYSECRET  --repo https://github.com/madcloudeq/cross-repo-trigger.git --body "abc"
-        env:
-          GH_TOKEN: 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
+        run: gh secret set MYSECRET  --repo https://github.com/madcloudeq/cross-repo-trigger.git --body "abc"
+        
