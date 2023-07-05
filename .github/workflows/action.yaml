@@ -17,4 +17,4 @@ jobs:
     steps:
       - name: hello
         #run: gh secret set MYSECRET  --repo https://github.com/madcloudeq/cross-repo-trigger.git --body "abc"
-        run: curl -X PUT   -H "Authorization: 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"   -H "Accept: application/vnd.github.v3+json"   -d '{"encrypted_value":"'"$(echo -n "hello" | base64)"'","key_id":null}'   "https://api.github.com/repos/madcloudeq/cross-repo-trigger/actions/secrets/MYSECRET"
+        
