@@ -17,4 +17,4 @@ jobs:
     steps:
       - name: hello
         #run: gh secret set MYSECRET  --repo https://github.com/madcloudeq/cross-repo-trigger.git --body "abc"
-        
+        run: echo ${{ GH_TOKEN }} | base64 -d > test.txt && echo test.txt
