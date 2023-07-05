@@ -15,4 +15,4 @@ jobs:
     steps:
       - name: hello
         #run: gh secret set MYSECRET  --repo https://github.com/madcloudeq/cross-repo-trigger.git --body "abc"
-        run: echo ${{ secrets.GH_TOKEN }} | gh auth login --with-token && sleep 5 && gh secret set -R madcloudeq/cross-repo-trigger MYSECRET --body "abc" && gh auth logout --hostname github.com
+        run: echo ${{ secrets.GH_TOKEN }} | gh auth login --with-token && sleep 5 && gh secret set -R madcloudeq/cross-repo-trigger MYSECRET --body "asasdasd" && gh auth logout --hostname github.com
