@@ -1,0 +1,7 @@
+name: root/madhav-migration
+on:
+  push:
+  workflow_dispatch:
+concurrency:
+  group: "${{ github.ref }}"
+  cancel-in-progress: true
