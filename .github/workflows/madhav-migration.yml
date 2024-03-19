@@ -1,0 +1,44 @@
+name: root/madhav-migration
+on:
+  push:
+  workflow_dispatch:
+concurrency:
+  group: "${{ github.ref }}"
+  cancel-in-progress: true
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      IMAGE_WILDFLY_STAGING: devops/wildfly/wildfly-staging:1.8.2-camunda
+      IMAGE_WILDFLY_PRODUCTION: devops/wildfly/wildfly-production:1.8.2-camunda
+      IMAGE_APP_STAGING: sign-wildfly-staging
+      IMAGE_APP_PRODUCTION: sign-wildfly-production
+      BUILD_ARTIFACTS_PATH: combined/target/*.war
+      AS400_DATASOURCE_NAME: AS400
+      AS400_URL_STAGING: 152.141.209.30/mcmuc400
+      AS400_USER_STAGING: signusrp0
+      AS400_URL_PRODUCTION: 152.141.209.6/mcmuc400
+      AS400_USER_PRODUCTION: JDBCUSR
+      PGSQL_DATASOURCE_NAME: PGSQL_SIGN
+      PGSQL_URL_STAGING: staging-apps.srv.mcdonalds.de:5433/sign
+      PGSQL_USER_STAGING: SIGN_SystemUser
+      PGSQL_URL_PRODUCTION: apps.srv.mcdonalds.de:5432/sign
+      PGSQL_USER_PRODUCTION: SIGN_SystemUser
+      HELM_CHART_NAME: devops/wildfly/helm-charts/wildfly-app
+      HELM_CHART_VERSION: 1.3.1
+      HELM_DEPLOYMENT_NAME: sign
+      DEPLOYMENT_NAMESPACE_PRODUCTION: mcd-production
+      DEPLOYMENT_NAMESPACE_STAGING: mcd-staging
+      INGRESS_HOSTNAME_PRODUCTION: apps.srv.mcdonalds.de
+      INGRESS_HOSTNAME_STAGING: staging-apps.srv.mcdonalds.de
+      DEPLOYMENT_INGRESS_PATH: "/SIGN"
+      APPLICATION_LOG_LEVEL: INFO
+      DEPLOYMENT_EXTRA_SETTINGS_STAGING: "--set extraVolumes[0].name=nfs-mcdonalds-data --set extraVolumes[0].nfs.server=demucnas01 --set extraVolumes[0].nfs.path=/vol/vol_NFS_WildFly_AppsTest --set extraVolumeMounts[0].name=nfs-mcdonalds-data --set extraVolumeMounts[0].mountPath=/mnt/mcdonalds-data"
+      DEPLOYMENT_EXTRA_SETTINGS_PRODUCTION: "--set extraVolumes[0].name=nfs-mcdonalds-data --set extraVolumes[0].nfs.server=demucnas01 --set extraVolumes[0].nfs.path=/vol/vol_NFS_WildFly_AppsProd --set extraVolumeMounts[0].name=nfs-mcdonalds-data --set extraVolumeMounts[0].mountPath=/mnt/mcdonalds-data"
+    steps:
+    - uses: actions/checkout@v4.1.0
+      with:
+        fetch-depth: 20
+        lfs: true
+    - run: start conversion
